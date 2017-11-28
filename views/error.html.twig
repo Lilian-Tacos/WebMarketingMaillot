@@ -1,0 +1,18 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Erreur{% endblock %}
+
+
+
+{% block content %}
+	<div class="jumbotron">
+		<div class="row" id="errorPanel">
+			<div class="col-xs-5">
+				<img class="img-responsive pull-right" src="{{ app.request.basepath }}/images/error.jpg"/>
+			</div>
+			<div class="col-xs-6">
+				<h1>Oups...</h1><h2>{{ message }}<br><br><a href="/">Retour vers l'accueil</a></h2>
+			</div>
+		</div>
+	</div>
+{% endblock %}

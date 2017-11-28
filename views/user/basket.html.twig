@@ -1,0 +1,29 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Panier{% endblock %}
+
+
+
+{% block content %}
+<div class="row">
+    <h1 class="text-center">Votre panier</h1>
+</div>
+{% if baskets|length == 0 %}
+<h4>Votre panier est vide.</h4>
+{% else %}
+<div class="row">
+    {% for basket in baskets %}
+    <div class="col-md-3 col-xs-6 col-sm-4 panier">
+        <a class="thumbnail" href="/jersey/{{ basket.jersey.id }}" style="text-decoration:none;">
+			Prix : {{ basket.jersey.price }}€
+            <img title="{{ basket.jersey.name }}" src="/images/jerseys/{{ basket.jersey.image }}" />
+			Quantite : {{ basket.quantity }}
+        </a>
+    </div>
+    {% endfor %}
+</div>
+<h4>Soit {{total}} article{% if total >1 %}s{% endif %} pour un prix de {{price}}€.</h4>
+<a href= "/user/panier/edit"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span> Modifier</button></a>
+<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-euro"></span> Payer</button>
+{% endif %}
+{% endblock %}

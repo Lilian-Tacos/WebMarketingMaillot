@@ -1,0 +1,41 @@
+{% extends "layout.html.twig" %} {% block title %}{{ jersey.name }}{% endblock %} {% block content %}
+
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <img src="/images/jerseys/{{ jersey.image }}">
+            </div>
+        </div>
+        <div class='col-md-8'>
+            <h2>{{ jersey.name }}</h2>
+            <p>{{ jersey.description }}</p>
+            <p>{{ jersey.price }} €</p>
+			{% if app.user and is_granted('IS_AUTHENTICATED_FULLY') %}
+			<form action="#" method="post">
+				<div class="form-group">
+					<input type="submit" class="btn btn-primary" value="Ajouter au panier" />
+				</div/>
+			</form>
+			{% endif %}
+            {% for comment in comments %}
+            <strong>{{ comment.author.name }}</strong> a dit : {{ comment.content }}
+            <br> {% else %} Aucun commentaire pour le moment. {% endfor %}
+            <h3>Ajouter un commentaire</h3> {% if commentForm %} {{ form_start(commentForm) }}
+            <div class="form-group">
+                {{ form_errors(commentForm.content) }} {{ form_widget(commentForm.content, { 'attr': { 'rows': '4', 'class': 'form-control', 'placeholder': 'Entrez votre commentaire' }}) }}
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Publier un commentaire" />
+            </div>
+            {{ form_end(commentForm) }} {% for flashMessage in app.session.flashbag.get('Succès') %}
+            <div class="alert alert-success">
+                {{ flashMessage }}
+            </div>
+            {% endfor %} {% else %}
+            <a href="{{ path('login') }} ">Connectez-vous</a> pour ajouter un commentaire. {% endif %}
+
+        </div>
+    </div>
+</div>
+{% endblock %}

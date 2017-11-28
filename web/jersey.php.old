@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/style.css"> 
+        <title>NewSoccerJersey</title>
+    </head>
+    <body>
+        <!-- BARRE NAVIGATION !!! -->
+        <?php
+            include 'header.php';
+        ?>
+		
+		<!-- CONTENU -->
+		<div class="container">
+			<div class="jumbotron">
+                <div class="row">
+					<div class="col-md-4">
+						<div class="thumbnail">
+                            <img src="<?php echo $jersey['jersey_image'];?>">
+                        </div>
+                    </div>
+						<div class='col-md-8'>
+							<h2><?php echo $jersey['jersey_name'];?></h2>
+							<p><?php echo $jersey['jersey_desc'];?></p>
+							<p><?php echo $jersey['jersey_price'];?> euros</p>
+						</div>
+                </div>
+            </div>
+		</div>
+		
+		<!-- FOOTER !!! -->
+		<?php
+            include 'footer.php';
+        ?>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    </body>
+</html>

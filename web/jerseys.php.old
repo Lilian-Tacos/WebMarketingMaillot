@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <title>NewSoccerJersey</title>
+    </head>
+    <body>
+        <!-- BARRE NAVIGATION !!! -->
+        <?php
+            include 'header.php';
+        ?>
+
+		<!-- CONTENU -->
+		<div class="container">
+			<div class="row">
+				<?php foreach ($jerseys as $jersey): ?>
+					<div class="col-md-3 col-sm-4 col-xs-6 miniature">
+						<a href="maillot.php?id=<?php echo $jersey['jersey_id'];?>" class="thumbnail">
+							<img class="img-responsive" src=<?php echo $jersey['jersey_image'] ?> />
+						</a>
+					</div>
+				<?php endforeach ?>
+			</div>
+		</div>
+
+		<!-- FOOTER !!! -->
+		<?php
+            include 'footer.php';
+        ?>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    </body>
+</html>

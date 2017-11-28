@@ -1,0 +1,37 @@
+{% extends "layout.html.twig" %} {% block title %}Modifier mon panier{% endblock %} {% block content %}
+<div class="row">
+    <h1 class="text-center">Votre panier</h1>
+</div>
+{% if baskets|length == 0 %}
+<h4>Votre panier est vide.</h4> {% else %}
+<div class="row">
+    <div class="table-responsive">
+        <table class="table table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prix unitaire</th>
+                    <th>Quantité</th>
+                    <th>Supprimer</th>
+                </tr>
+            </thead>
+            <form action="#" method="post">
+                {% for basket in baskets %}
+                <tr>
+                    <td><a class="jerseyTitle" href="{{ path('jersey', { 'id': basket.jersey.id }) }}">{{ basket.jersey.name }}</a></td>
+                    <td>{{basket.jersey.price}}€</td>
+                    <td>
+                        <input type="number" min="1" name="quantite{{basket.jersey.id}}" value="{{basket.quantity}}">
+                    </td>
+                    <td>
+                        <input type="checkbox" name="suppr{{basket.jersey.id}}">
+                    </td>
+                </tr>
+                {% endfor %}
+        </table>
+    </div>
+</div>
+<input type="submit" class="btn btn-primary" value="Valider" />
+</form>
+<a href= "/user/panier"><button type="button" class="btn btn-default">Retour au panier</button></a>
+{% endif %} {% endblock %}

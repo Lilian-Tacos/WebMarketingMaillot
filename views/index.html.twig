@@ -1,0 +1,68 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Accueil{% endblock %}
+
+
+
+{% block content %}
+    <div class="jumbotron">
+      <div class="row">
+        <div class="col-md-6 thumbnail">
+          <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+			  <!-- Indicators -->
+			  <ol class="carousel-indicators">
+				<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+				<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+				<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+			  </ol>
+
+			  <!-- Wrapper for slides -->
+			  <div class="carousel-inner" role="listbox">
+				<div class="item active">
+				<a href="/league/1"> 
+				  <img src="images/accueil.jpg" alt="France">
+				  <div class="carousel-caption">
+					<h3>France</h3>
+					<p>Ligue 1</p>
+				  </div>
+				  </a>
+				</div>
+				<div class="item">
+				<a href="/league/2"> 
+				  <img src="images/accueil2.jpg" alt="Espagne">
+				  <div class="carousel-caption">
+					<h3>Espagne</h3>
+					<p>Liga BBVA</p>
+				  </div>
+				</a>
+				</div>
+				<div class="item">
+				<a href="/league/3"> 
+				  <img src="images/accueil3.jpg" alt="Allemagne">
+				  <div class="carousel-caption">
+					<h3>Allemagne</h3>
+					<p>Bundesliga</p>
+				  </div>
+				</a>
+				</div>
+			  </div>
+
+			  <!-- Controls -->
+			  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			  </a>
+			  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			  </a>
+			</div>
+        </div>
+        <div class="col-md-6">
+          Vous cherchez un maillot pour porter les couleurs de votre équipe favorite. 
+		  Vous trouverez forcément ce que vous cherchez parmis toutes les références de notre site. 
+		  Nous vous proposons toutes les plus grandes équipes des plus prestigieux championnats de foot. Supporters à vos maillots!
+        </div>
+      </div>
+    </div>
+{% endblock %}

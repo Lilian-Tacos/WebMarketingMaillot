@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <title>NewSoccerJersey - {% block title %}{% endblock %} </title>
+</head>
+
+<body>
+    <!-- BARRE NAVIGATION !!! -->
+    <header>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="glyphicon glyphicon-th-list"></span>
+                    </button>
+                    <a class="navbar-brand" href="/"> NewSoccerJersey</a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Championnat <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                {% for league in leagues %}
+                                <li><a href="/league/{{ league.id }}">{{ league.name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        <li><a href="/maillots">Maillots</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        {% if app.user and is_granted('ROLE_ADMIN') %}
+                            <li class="{% if adminMenu is defined %}active{% endif %}"><a href="{{ path('admin') }}"><span class="glyphicon glyphicon-cog"></span> Administration</a></li>
+                        {% endif %}
+                        {% if app.user and is_granted('IS_AUTHENTICATED_FULLY') %}
+                            <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-user"></span> Bienvenue {{ app.user.name }} <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/user/panier">Panier</a></li>
+                                    <li><a href="/user/account">Mon compte</a></li>
+									<li role="separator" class="divider"></li>
+                                    <li><a href="{{ path('logout') }}">Se déconnecter</a></li>
+                                </ul>
+                            </li>
+                        {% else %}
+                            <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-user"></span> Non connecté <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ path('login') }}">Se connecter</a></li>
+                                    <li><a href="{{ path('signup') }}">S'inscrire</a></li>
+                                </ul>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- CONTENU -->
+    <div class="container">
+		{% for flashMessage in app.session.flashbag.get('success') %}
+		<div class="alert alert-success">
+			{{ flashMessage }}
+		</div>
+		{% endfor %}
+		{% for flashMessage in app.session.flashbag.get('error') %}
+		<div class="alert alert-danger">
+			{{ flashMessage }}
+		</div>
+		{% endfor %}
+        {% block content %}{% endblock %}
+    </div>
+
+
+    <!-- FOOTER !!! -->
+    <footer class="navbar-bottom">
+        <p class="text-center">Créé par Julien Bontron, Lilian Varrel et Axel Bertrand qui s'incruste.</p>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

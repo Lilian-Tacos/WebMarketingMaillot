@@ -1,0 +1,26 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}{{ leagueL.name }}{% endblock %}
+
+
+
+{% block content %}
+	<div class="row">
+		<h1 class="text-center">{{ leagueL.name }}</h1>
+	</div>
+	{% if jerseys|length == 0 %}
+		<div class="row">
+			<h1 class="text-center">Cette catégorie ne contient aucun maillot</h1>
+		</div>
+	{% else %}
+    <div class="row">
+		{% for jersey in jerseys %}
+        <div class="col-md-3 col-xs-6 col-sm-4 miniature">
+          <a class="thumbnail" href="/jersey/{{ jersey.id }}">
+						<img title="{{ jersey.name }}" src="/images/jerseys/{{ jersey.image }}" />
+					</a>
+        </div>
+		{% endfor %}
+    </div>
+	{% endif %}
+{% endblock %}
